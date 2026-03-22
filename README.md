@@ -1,16 +1,16 @@
-# 🏨 BookMyStay - Hotel Booking Management System (UC2)
+# 🏨 BookMyStay - Hotel Booking Management System (UC3)
 
 ## 🌿 Branch Information
 
 This branch represents:
 
-👉 **UC2: Basic Room Types & Static Availability**
+👉 **UC3: Centralized Room Inventory Management**
 
 ---
 
 ## 📌 Objective
 
-The objective of UC2 is to introduce object modeling using abstraction and inheritance, allowing the system to represent different room types before introducing complex data structures.
+The objective of UC3 is to introduce centralized inventory management by replacing scattered availability variables with a single, consistent data structure using HashMap.
 
 ---
 
@@ -18,31 +18,27 @@ The objective of UC2 is to introduce object modeling using abstraction and inher
 
 In this use case:
 
-* Different room types are modeled as classes
-* A base abstract class defines common properties
-* Each room type extends the base class
-* Availability is stored using simple variables
-* Room details are displayed on the console
-
-This establishes a strong foundation for future system expansion.
+* Room availability is stored in a centralized system
+* A HashMap is used to manage room types and counts
+* All operations (add, update, retrieve) go through one component
+* Ensures consistency and prevents data duplication
 
 ---
 
 ## ⚙️ Procedure
 
-1. Create an abstract class `Room`
-2. Define common attributes:
+1. Create a class `RoomInventory`
+2. Define a `HashMap<String, Integer>` to store data
+3. Add methods:
 
-    * roomType
-    * availableRooms
-3. Create subclasses:
-
-    * SingleRoom
-    * DoubleRoom
-    * DeluxeRoom
-4. Override `displayDetails()` method
-5. Create objects in main class
-6. Print room details
+    * addRoomType()
+    * getAvailability()
+    * updateAvailability()
+    * displayInventory()
+4. Initialize inventory in main class
+5. Add room types
+6. Update availability
+7. Display results
 
 ---
 
@@ -50,13 +46,15 @@ This establishes a strong foundation for future system expansion.
 
 Start
 ↓
-User runs application
+Initialize RoomInventory
 ↓
-Create room objects
+Register room types
 ↓
-Assign static availability
+Store data in HashMap
 ↓
-Display room details
+Update availability via methods
+↓
+Display inventory
 ↓
 End
 
@@ -64,81 +62,86 @@ End
 
 ## 📂 Use Case Details
 
-### ✅ UC2: Basic Room Types & Static Availability
+### ✅ UC3: Centralized Room Inventory Management
 
-**Goal:** Model room types using OOP concepts
-**Actor:** User
+**Goal:** Manage room availability using a centralized structure
+**Actor:** RoomInventory
 
 ### Flow:
 
-* User runs the application
-* Room objects are created
-* Availability is stored using variables
-* Room details are displayed
-* Application terminates
+* Initialize inventory
+* Register room types
+* Store availability in HashMap
+* Update via controlled methods
+* Display current state
 
 ---
 
 ## 🧠 Key Concepts Used
 
-* Abstraction
-  → Abstract class defines common structure
+* HashMap
+  → Stores key-value pairs (Room Type → Availability)
 
-* Inheritance
-  → Room types extend base class
-
-* Method Overriding
-  → Each room defines its own behavior
+* Centralized State Management
+  → Single source of truth
 
 * Encapsulation
-  → Data and behavior grouped together
+  → Data accessed only through methods
 
-* Static Data Handling
-  → Availability stored using variables
+* Data Consistency
+  → Prevents scattered and conflicting values
 
 ---
 
 ## 📊 Example Output
 
-=========== Room Availability ===========
-Room Type: Single Room
-Available Rooms: 5
-------------------
+========= Current Room Inventory =========
+Room Type: Single Room | Available: 5
+Room Type: Double Room | Available: 3
+Room Type: Deluxe Room | Available: 2
+=====================================
 
-Room Type: Double Room
-Available Rooms: 3
-------------------
+Updating availability...
 
-Room Type: Deluxe Room
-Available Rooms: 2
-------------------
-
-=========================================
+========= Current Room Inventory =========
+Room Type: Single Room | Available: 4
+Room Type: Double Room | Available: 3
+Room Type: Deluxe Room | Available: 2
+=====================================
 
 ---
 
 ## ⚡ Design Insight
 
-At this stage:
+Before UC3:
 
-* We focus on **modeling real-world entities**
-* No data structures yet
-* System is **rigid but simple**
+* Availability was scattered across objects
+* Hard to maintain consistency
 
-This is intentional before moving to dynamic handling.
+After UC3:
+
+* Single source of truth (HashMap)
+* Easier updates and scalability
+
+---
+
+## ⚠️ Limitations
+
+* No booking logic yet
+* No validation (e.g., overbooking)
 
 ---
 
 ## 🛠️ Technologies Used
 
 * Java (JDK 8 or above)
-* VS Code / IntelliJ / Eclipse
+* Collections Framework (HashMap)
 
 ---
 
 ## 🔮 Next Step
 
-➡️ UC3: Introduce booking logic (basic allocation)
+➡️ UC4: Booking Logic + Prevent Double Booking
 
 ---
 

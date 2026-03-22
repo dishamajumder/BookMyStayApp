@@ -1,75 +1,61 @@
 // BookMyStayApp.java
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * ============================================================
- * UC2: Basic Room Types & Static Availability
+ * UC3: Centralized Room Inventory Management
  * ============================================================
  *
  * Description:
- * Demonstrates object modeling using abstraction and inheritance
- * by defining different room types and their availability.
+ * This program demonstrates centralized inventory management
+ * using a HashMap to store and manage room availability.
  *
- * Branch: uc2
- * Version: 2.0
+ * Branch: uc3
+ * Version: 3.0
  */
 
-// Abstract Base Class
-abstract class Room {
-    protected String roomType;
-    protected int availableRooms;
+// Inventory Manager Class
+class RoomInventory {
+
+    // Centralized data structure
+    private Map<String, Integer> inventory;
 
     // Constructor
-    public Room(String roomType, int availableRooms) {
-        this.roomType = roomType;
-        this.availableRooms = availableRooms;
+    public RoomInventory() {
+        inventory = new HashMap<>();
     }
 
-    // Abstract method
-    public abstract void displayDetails();
-}
-
-// Single Room Class
-class SingleRoom extends Room {
-
-    public SingleRoom(int availableRooms) {
-        super("Single Room", availableRooms);
+    // Register room type with availability
+    public void addRoomType(String roomType, int count) {
+        inventory.put(roomType, count);
     }
 
-    @Override
-    public void displayDetails() {
-        System.out.println("Room Type: " + roomType);
-        System.out.println("Available Rooms: " + availableRooms);
-        System.out.println("----------------------------------");
-    }
-}
-
-// Double Room Class
-class DoubleRoom extends Room {
-
-    public DoubleRoom(int availableRooms) {
-        super("Double Room", availableRooms);
+    // Get availability
+    public int getAvailability(String roomType) {
+        return inventory.getOrDefault(roomType, 0);
     }
 
-    @Override
-    public void displayDetails() {
-        System.out.println("Room Type: " + roomType);
-        System.out.println("Available Rooms: " + availableRooms);
-        System.out.println("----------------------------------");
-    }
-}
-
-// Deluxe Room Class
-class DeluxeRoom extends Room {
-
-    public DeluxeRoom(int availableRooms) {
-        super("Deluxe Room", availableRooms);
+    // Update availability
+    public void updateAvailability(String roomType, int newCount) {
+        if (inventory.containsKey(roomType)) {
+            inventory.put(roomType, newCount);
+        } else {
+            System.out.println("Room type not found: " + roomType);
+        }
     }
 
-    @Override
-    public void displayDetails() {
-        System.out.println("Room Type: " + roomType);
-        System.out.println("Available Rooms: " + availableRooms);
-        System.out.println("----------------------------------");
+    // Display full inventory
+    public void displayInventory() {
+        System.out.println("========= Current Room Inventory =========");
+
+        for (Map.Entry<String, Integer> entry : inventory.entrySet()) {
+            System.out.println("Room Type: " + entry.getKey() +
+                    " | Available: " + entry.getValue());
+        }
+
+        System.out.println("==========================================");
     }
 }
 
@@ -78,18 +64,22 @@ public class BookMyStayApp {
 
     public static void main(String[] args) {
 
-        System.out.println("=========== Room Availability ===========");
+        // Step 1: Initialize inventory
+        RoomInventory inventory = new RoomInventory();
 
-        // Create room objects with static availability
-        Room single = new SingleRoom(5);
-        Room doubleRoom = new DoubleRoom(3);
-        Room deluxe = new DeluxeRoom(2);
+        // Step 2: Register room types
+        inventory.addRoomType("Single Room", 5);
+        inventory.addRoomType("Double Room", 3);
+        inventory.addRoomType("Deluxe Room", 2);
 
-        // Display details
-        single.displayDetails();
-        doubleRoom.displayDetails();
-        deluxe.displayDetails();
+        // Step 3: Display initial inventory
+        inventory.displayInventory();
 
-        System.out.println("=========================================");
+        // Step 4: Update availability (simulate booking)
+        System.out.println("\nUpdating availability...\n");
+        inventory.updateAvailability("Single Room", 4);
+
+        // Step 5: Display updated inventory
+        inventory.displayInventory();
     }
 }
