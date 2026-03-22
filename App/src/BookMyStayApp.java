@@ -2,37 +2,94 @@
 
 /**
  * ============================================================
- * UC1: Application Entry & Welcome Message
+ * UC2: Basic Room Types & Static Availability
  * ============================================================
  *
  * Description:
- * Entry point of the BookMyStay Hotel Booking System.
- * Displays application details and initializes the system.
+ * Demonstrates object modeling using abstraction and inheritance
+ * by defining different room types and their availability.
  *
- * Branch: uc1
- * Version: 1.0
+ * Branch: uc2
+ * Version: 2.0
  */
 
+// Abstract Base Class
+abstract class Room {
+    protected String roomType;
+    protected int availableRooms;
+
+    // Constructor
+    public Room(String roomType, int availableRooms) {
+        this.roomType = roomType;
+        this.availableRooms = availableRooms;
+    }
+
+    // Abstract method
+    public abstract void displayDetails();
+}
+
+// Single Room Class
+class SingleRoom extends Room {
+
+    public SingleRoom(int availableRooms) {
+        super("Single Room", availableRooms);
+    }
+
+    @Override
+    public void displayDetails() {
+        System.out.println("Room Type: " + roomType);
+        System.out.println("Available Rooms: " + availableRooms);
+        System.out.println("----------------------------------");
+    }
+}
+
+// Double Room Class
+class DoubleRoom extends Room {
+
+    public DoubleRoom(int availableRooms) {
+        super("Double Room", availableRooms);
+    }
+
+    @Override
+    public void displayDetails() {
+        System.out.println("Room Type: " + roomType);
+        System.out.println("Available Rooms: " + availableRooms);
+        System.out.println("----------------------------------");
+    }
+}
+
+// Deluxe Room Class
+class DeluxeRoom extends Room {
+
+    public DeluxeRoom(int availableRooms) {
+        super("Deluxe Room", availableRooms);
+    }
+
+    @Override
+    public void displayDetails() {
+        System.out.println("Room Type: " + roomType);
+        System.out.println("Available Rooms: " + availableRooms);
+        System.out.println("----------------------------------");
+    }
+}
+
+// Main Application
 public class BookMyStayApp {
 
     public static void main(String[] args) {
 
-        // Welcome Banner
-        System.out.println("==================================================");
-        System.out.println("        Welcome to BookMyStay Booking System      ");
-        System.out.println("==================================================");
+        System.out.println("=========== Room Availability ===========");
 
-        // Application Details
-        System.out.println("Application Name : BookMyStay");
-        System.out.println("Version          : 1.0");
-        System.out.println("--------------------------------------------------");
+        // Create room objects with static availability
+        Room single = new SingleRoom(5);
+        Room doubleRoom = new DoubleRoom(3);
+        Room deluxe = new DeluxeRoom(2);
 
-        // System Ready Message
-        System.out.println("System initialized successfully.");
-        System.out.println("Ready to manage hotel bookings.");
+        // Display details
+        single.displayDetails();
+        doubleRoom.displayDetails();
+        deluxe.displayDetails();
 
-        // End Message
-        System.out.println("--------------------------------------------------");
-        System.out.println("Application execution completed.");
+        System.out.println("=========================================");
     }
 }
