@@ -1,16 +1,16 @@
-# 🏨 BookMyStay - Hotel Booking Management System (UC1)
+# 🏨 BookMyStay - Hotel Booking Management System (UC2)
 
 ## 🌿 Branch Information
 
 This branch represents:
 
-👉 **UC1: Application Entry & Welcome Message**
+👉 **UC2: Basic Room Types & Static Availability**
 
 ---
 
 ## 📌 Objective
 
-The objective of UC1 is to establish a clear and predictable starting point for the BookMyStay application by demonstrating how a Java program begins execution and produces console output.
+The objective of UC2 is to introduce object modeling using abstraction and inheritance, allowing the system to represent different room types before introducing complex data structures.
 
 ---
 
@@ -18,24 +18,31 @@ The objective of UC1 is to establish a clear and predictable starting point for 
 
 In this use case:
 
-* The application starts via the `main()` method
-* A welcome message is displayed
-* Application name and version are shown
-* The system confirms initialization
-* The program terminates
+* Different room types are modeled as classes
+* A base abstract class defines common properties
+* Each room type extends the base class
+* Availability is stored using simple variables
+* Room details are displayed on the console
 
-This lays the foundation for all future system features.
+This establishes a strong foundation for future system expansion.
 
 ---
 
 ## ⚙️ Procedure
 
-1. Create class `BookMyStayApp`
-2. Define the `main()` method
-3. Print welcome banner
-4. Display application name and version
-5. Show system initialization message
-6. End execution
+1. Create an abstract class `Room`
+2. Define common attributes:
+
+    * roomType
+    * availableRooms
+3. Create subclasses:
+
+    * SingleRoom
+    * DoubleRoom
+    * DeluxeRoom
+4. Override `displayDetails()` method
+5. Create objects in main class
+6. Print room details
 
 ---
 
@@ -45,13 +52,11 @@ Start
 ↓
 User runs application
 ↓
-JVM invokes main()
+Create room objects
 ↓
-Display welcome message
+Assign static availability
 ↓
-Display application details
-↓
-Display system ready message
+Display room details
 ↓
 End
 
@@ -59,45 +64,68 @@ End
 
 ## 📂 Use Case Details
 
-### ✅ UC1: Application Entry & Welcome Message
+### ✅ UC2: Basic Room Types & Static Availability
 
-**Goal:** Establish application entry point and console output
+**Goal:** Model room types using OOP concepts
 **Actor:** User
 
 ### Flow:
 
 * User runs the application
-* JVM invokes `main()` method
-* Application prints welcome message and details
+* Room objects are created
+* Availability is stored using variables
+* Room details are displayed
 * Application terminates
 
 ---
 
 ## 🧠 Key Concepts Used
 
-* Class
-* Main Method
-* Static Keyword
-* Console Output
-* Program Lifecycle
+* Abstraction
+  → Abstract class defines common structure
+
+* Inheritance
+  → Room types extend base class
+
+* Method Overriding
+  → Each room defines its own behavior
+
+* Encapsulation
+  → Data and behavior grouped together
+
+* Static Data Handling
+  → Availability stored using variables
 
 ---
 
 ## 📊 Example Output
 
-==================================================
-Welcome to BookMyStay Booking System
-====================================
+=========== Room Availability ===========
+Room Type: Single Room
+Available Rooms: 5
+------------------
 
-Application Name : BookMyStay
-Version          : 1.0
-----------------------
+Room Type: Double Room
+Available Rooms: 3
+------------------
 
-System initialized successfully.
-Ready to manage hotel bookings.
--------------------------------
+Room Type: Deluxe Room
+Available Rooms: 2
+------------------
 
-Application execution completed.
+=========================================
+
+---
+
+## ⚡ Design Insight
+
+At this stage:
+
+* We focus on **modeling real-world entities**
+* No data structures yet
+* System is **rigid but simple**
+
+This is intentional before moving to dynamic handling.
 
 ---
 
@@ -110,7 +138,7 @@ Application execution completed.
 
 ## 🔮 Next Step
 
-➡️ UC2: Define Room Structure (Modeling real-world entities)
+➡️ UC3: Introduce booking logic (basic allocation)
 
 ---
 
